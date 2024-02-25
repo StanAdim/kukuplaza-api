@@ -10,23 +10,24 @@ up:
 	docker compose up -d
 
 composer-update:
-	docker exec template_backend bash -c "composer update"
-	docker exec template_backend bash -c "php artisan key:generate"
+	docker exec api-kukuplaza bash -c "composer update"
+	docker exec api-kukuplaza bash -c "cp .env.example .env"
+	docker exec api-kukuplaza bash -c "php artisan key:generate"
 	
 optimize:
-	docker exec template_backend bash -c "php artisan optimize:fresh"
+	docker exec api-kukuplaza bash -c "php artisan optimize:fresh"
 data:
-	docker exec template_backend bash -c "php artisan migrate:fresh --seed"
+	docker exec api-kukuplaza bash -c "php artisan migrate:fresh --seed"
 
 bash:
-	docker exec -it template_backend bash
+	docker exec -it api-kukuplaza bash
 
 fresh:
 	docker compose restart
 rmi:
-	docker image rm -f template_backend-template_backend
+	docker image rm -f api-kukuplaza-api-kukuplaza
 logs: 
-	docker logs -f template_backend
+	docker logs -f api-kukuplaza
 
 # backup_db: 
 	# docker exec mysql_db bash -c "./home/backups/backup_script.sh"
