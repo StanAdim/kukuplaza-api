@@ -36,9 +36,10 @@ class ProductController extends Controller
         ], 200);
     }
     public function retriveProduct(Request $request)  {
+            // return response()->json(['respond'=> 'Message']);
         $product = Product::where('id', $request['productId'])->first();
         return response()->json([
-            'message' => 'Shop Products',
+            'message' => 'Shop Product',
             'data'=> $product
         ]);
     }
